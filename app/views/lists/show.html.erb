@@ -7,7 +7,7 @@
 <div class="container my-3">
     <div class="cards">
         <% @list.movies.each do |movie| %>
-            <div class="card-trip">
+          <div class="card-trip">
             <img src="<%= movie.poster_url %>" />
             <div class="card-trip-infos">
                 <div>
@@ -15,18 +15,25 @@
                 <p><%= movie.overview %></p>
                 </div>
             </div>
-            <h2 class="card-trip-pricing"><%= movie.rating %> / 10</h2>
-        </div>
+            <div class = "m-3">
+              <h2 class="card-trip-pricing"><%= movie.rating %> / 10</h2>
+              <% bookmark = Bookmark.find_by(movie_id: movie.id) %>
+              <p><%= link_to "Remove film from list", bookmark_path(bookmark), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %></p>
+            </div>
+          </div>
         <% end %>
     </div>
 </div>
 
-  <div class="goto mt-3">
+<%# back to homepage %>
+<div class="goto m-3">
     <%= link_to "Back to my movie library", root_path  %>
-  </div>
+</div>
 
+<%# add movies %>
+<div class = "m-3">
+  <%= link_to "add movie", new_list_bookmark_path(@list) %>
+</div>
 
-<%# add "add movies" %>
-<%= link_to "add movie", new_list_bookmark_path(@list) %>
-<%# add button: "2 movies" %>
-<%# add navbar with My lists and New list %>
+<%# TODO: add button: "2 movies" %>
+<%# TODO: add navbar with My lists and New list %>
