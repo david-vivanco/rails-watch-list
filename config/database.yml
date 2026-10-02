@@ -26,7 +26,6 @@ test:
   database: rails-watch-list_test
 
 production:
-  <<: *default
   primary:
     <<: *default
     url: <%= ENV["DATABASE_URL"] %>
