@@ -46,8 +46,8 @@ Rails.application.configure do
   # Don't log any deprecations.
   config.active_support.report_deprecations = false
 
-  # dvivanc: prevent asset compilation
-  config.assets.compile = false
+  # dvivanc: prevent asset compilation. Desperate attempt to make it work. DELETe
+  # config.assets.compile = false
 
   # Replace the default in-process memory cache store with a durable alternative.
   config.cache_store = :solid_cache_store
