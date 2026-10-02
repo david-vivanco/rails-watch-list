@@ -2,6 +2,7 @@ class BookmarksController < ApplicationController
   def new
     @list = List.find(params[:list_id])
     @bookmark = Bookmark.new(list: @list)
+    @movies = Movie.order(:title) # this is to enable the form to show films in alphabetical order
   end
 
   def create

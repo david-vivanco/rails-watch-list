@@ -1,28 +1,42 @@
-<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(<%= @list.image_url %>);">
+<div class="banner position-relative" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(<%= @list.image_url %>);">
   <div class="container text-center">
     <h1><%= @list.name %></h1>
   </div>
+  <button class = "btn btn-warning text-white position-absolute top-0 end-0 m-4"><%= @list.movies.count %> movies</button>
 </div>
 
-<div class="container my-3">
-    <div class="cards">
-        <% @list.movies.each do |movie| %>
-          <div class="card-trip">
-            <img src="<%= movie.poster_url %>" />
-            <div class="card-trip-infos">
-                <div>
-                <h2><%= movie.title %></h2>
-                <p><%= movie.overview %></p>
-                </div>
-            </div>
-            <div class = "m-3">
-              <h2 class="card-trip-pricing"><%= movie.rating %> / 10</h2>
-              <% bookmark = Bookmark.find_by(movie_id: movie.id) %>
-              <p><%= link_to "Remove film from list", bookmark_path(bookmark), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %></p>
-            </div>
+<%# add button: "2 movies" %>
+
+<%# add movies %>
+<div class = "m-3 d-flex">
+  <%= link_to "add a movie", new_list_bookmark_path(@list), class: "btn btn-success text-white ms-auto" %> <%# position-absolute end-0 %>
+</div>
+
+<div class="container m-3">
+  <div class="cards">
+    <% @list.movies.each do |movie| %>
+      <div class="card-movie">
+        <img src="<%= movie.poster_url %>" />
+        <div class="card-movie-infos">
+          <div>
+            <h2><%= movie.title %> ·
+              <span class="fw-light"> <%= movie.rating %> </span>
+              <i class="fa-solid fa-star text-info fs-7"></i>
+            </h2>
+            <p><%= movie.overview %></p>
           </div>
-        <% end %>
-    </div>
+        </div>
+        <div class = "card-bookmark m-3">
+          <% bookmark = Bookmark.find_by(movie_id: movie.id) %>
+          <h2 class="card-movie-pricing">
+            <i class="fa-solid fa-quote-left"></i>
+            <%= bookmark.comment %>
+          </h2>
+          <p><%= link_to "remove", bookmark_path(bookmark), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "red-text" %></p>
+        </div>
+      </div>
+    <% end %>
+  </div>
 </div>
 
 <%# back to homepage %>
@@ -30,10 +44,7 @@
     <%= link_to "Back to my movie library", root_path  %>
 </div>
 
-<%# add movies %>
-<div class = "m-3">
-  <%= link_to "add movie", new_list_bookmark_path(@list) %>
-</div>
 
-<%# TODO: add button: "2 movies" %>
+
+
 <%# TODO: add navbar with My lists and New list %>
