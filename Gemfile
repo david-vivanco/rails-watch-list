@@ -64,7 +64,10 @@ group :development, :test do
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   gem "rubocop-rails-omakase", require: false
 
-   gem "hotwire-livereload"
+  gem "hotwire-livereload"
+
+  # To protect my keys from being sent to github
+  gem "dotenv-rails"
 end
 
 group :development do
