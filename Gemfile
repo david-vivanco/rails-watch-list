@@ -48,7 +48,7 @@ gem "autoprefixer-rails"
 gem "font-awesome-sass", "~> 6.1"
 gem "simple_form"
 
-# Image upload and hosting
+# Image upload and hostinggit
 gem "cloudinary"
 
 group :development, :test do
