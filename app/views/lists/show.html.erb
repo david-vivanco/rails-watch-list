@@ -2,10 +2,11 @@
   <div class="container text-center">
     <h1><%= @list.name %></h1>
   </div>
+  <%# add button: "x movies" %>
   <button class = "btn btn-warning text-white position-absolute top-0 end-0 m-4"><%= @list.movies.count %> movies</button>
 </div>
 
-<%# add button: "2 movies" %>
+<%= cl_image_tag @list.photo.key, height: 300, width: 400, crop: :fill %>
 
 <%# add movies %>
 <div class = "m-3 d-flex">
